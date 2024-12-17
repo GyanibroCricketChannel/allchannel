@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Gyani_Bro</title>
+    <meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/controls.min.css" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="youtube-theme.css" />
+    <style type="text/css">
+        /* Your CSS styles */
+        #wrap { 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        video {
+            width: 100vw;
+            height: 56.25vw; /* 16:9 aspect ratio (9/16 * 100vw) */
+            max-width: 100vw;
+            max-height: 100vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body bgcolor='black' style='margin:0'>
+    <section id="wrap">
+        <div class="youtube-theme">
+            <video autostart="true" data-shaka-player id="youtube-theme" style="width:100%;height:100%"></video>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        (async function() {
+            // Function to get the value of a query parameter by name
+            function getQueryParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // Define multiple manifest URIs and DRM configurations
+            const videoConfigs = [
+                {
+                    id: 'willhd1',
+                    manifestUri: 'https://cors-anywhere.ammoapps.com/https://dfwlive-v1-c1p3-sponsored.akamaized.net/Content/HLS.cps/Live/channel(WILLHD-3291.dfw.1080)/02.m3u8',
+                    drmConfig: {
+                        clearKeys: {
+                            '59ed8dc9d4a48857ef8e5865919496cc': '0d3680bd8b349deda8b7fdd1da71b7f8'
+                        }
+                    }
+                },
+                {
+                    id: 'willhd2',
+                    manifestUri: 'https://cors-proxy.cooks.fyi/https://dfwlive-v1-c1p3-sponsored.s.llnwi.net/Content/HLS.cps/Live/channel(WILLHD-3291.dfw.1080)/index.m3u8',
+                    drmConfig: {
+                        clearKeys: {
+                            '59ed8dc9d4a48857ef8e5865919496cc': '0d3680bd8b349deda8b7fdd1da71b7f8'
+                        }
+                    }
+                },
+                {
+                    id: 'extra1',
+                    manifestUri: 'https://zerotoone.com.br/wp-content/plugins/super-links/application/helpers/super-links-proxy.php/https://dfwlive-v1-c1p3-sponsored.s.llnwi.net/Content/HLS.cps/Live/channel(WILLXT-3292.dfw.1080)/index.m3u8',
+                    drmConfig: {
+                        clearKeys: {
+                            '1f52934d28a25c51a5dd577a650dcece': '323a46b02a31172c2475406e56fd3be6'
+                        }
+                    }
+                },
+                {
+                    id: 'extra2',
+                    manifestUri: 'https://cors-proxy.cooks.fyi/https://dfwlive-v1-c1p3-sponsored.s.llnwi.net/Content/HLS.cps/Live/channel(WILLXT-3292.dfw.1080)/index.m3u8',
+                    drmConfig: {
+                        clearKeys: {
+                            '1f52934d28a25c51a5dd577a650dcece': '323a46b02a31172c2475406e56fd3be6'
+                        }
+                    }
+                },
+                {
+                    id: 'primeenglish',
+                    manifestUri: 'https://aba5sdmaaaaaaaamo56zosqr4m7j7.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/0y0tptbbjk/out/v1/8b1b95c2e6dc496abe14a3ae5c675917/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'e90836d23b4ec1b5618b2e4f3a470d38': '08f968dd99717b22564fe1089258eb40'
+                        }
+                    }
+                },
+                {
+                    id: 'prime2',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'ae26845bd33038a9c0774a0981007294': '63ac662dde310cfb4cc6f9b43b34196d'
+                        }
+                    }
+                },
+                {
+                    id: 'prime3',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '6d1708b185c6c4d7b37600520c7cc93c': '1aace05f58d8edef9697fd52cb09f441'
+                        }
+                    }
+                },
+                {
+                    id: 'primehindi',
+                    manifestUri: 'https://aba5sdmaaaaaaaamcs7bgwx2cgzhi.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/bopqv4fykb/out/v1/01d1290c69584c7cbf58b8ab404ea1b8/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '6da8c268d58a0fe4ff75d297359a8ad7': 'eb0ae4c2c24a52070154499bb09a36cb'
+                        }
+                    }
+                },
+                {
+                    id: 'skysports',
+                    manifestUri: 'https://proxiimity-fire.mominulislamm3u8.workers.dev/sky.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '000546476256963bd054ded3b6ae5800': '1e497068bcc078fdb2f4296bc400ca2b'
+                        }
+                    }
+                },
+                {
+                    id: 'skyevent2',
+                    manifestUri: 'https://sky-ww-three.vercel.app/skysportsmainevent/manifest.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '000546476256963bd054ded3b6ae5800': '1e497068bcc078fdb2f4296bc400ca2b'
+                        }
+                    }
+                },
+                {
+                    id: 'skycricket1',
+                    manifestUri: 'https://kratos.vip/t/index.php/https://linear007-gb-dash1-prd-ak.cdn.skycdp.com/016a/Content/DASH_003_720_120/Live/channel(skysportscricket)/manifest_720-120.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '00053ac1e9b1231eed3eb4e3540b3ae1': '0f03d8541826af3d9acbac975d751165'
+                        }
+                    }
+                },
+                {
+                    id: 'skycricket2',
+                    manifestUri: 'https://sky-ww-three.vercel.app/skysportscricket/manifest.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '00053ac1e9b1231eed3eb4e3540b3ae1': '0f03d8541826af3d9acbac975d751165'
+                        }
+                    }
+                },
+                {
+                    id: 'w720',
+                    manifestUri: 'https://linear-novi.stvacdn.spectrum.com/LIVE/5248/bpk-tv/10364/drm/manifest.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '475d7932b5f352bb92016b75b60c58fa': 'ea37faa137ae8f644105c4fcc189a35f'
+                        }
+                    }
+                },
+                {
+                    id: 'star1hindi',
+                    manifestUri: 'https://bpprod3catchup.akamaized.net/bpk-tv/irdeto_com_Channel_252/output/test.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'a088c5374e7351baaaf1745a7355b98d': 'cfe49caf6b003b8f87a6064d34874348'
+                        }
+                    }
+                },	
+                {
+                    id: 'star2',
+                    manifestUri: 'https://bpcdncs3.dialog.lk/bpk-token/2ab@ilqaatufbcamc5yskyewpabagb0cenf35a2kj3ca/GlobalManifest.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'fae2bdb57c6a5ed6802f91a021505dc1': '4d5d55f218c3671e16f89542c9a80b77'
+                        }
+                    }
+                },
+				{
+                    id: 'starselect2',
+                    manifestUri: 'https://bpprod7catchup.akamaized.net/bpk-tv/irdeto_com_Channel_729/output/manifest.mpd?begin=20240719T085727&end=20240727T085727',
+                    drmConfig: {
+                        clearKeys: {
+                            'e38d34da752c5add8fed921a7b6d4f9d': '2b6bff6270b94d66dfad76ff6bfa9c0b'
+                        }
+                    }
+                },
+                {
+                    id: 'astro',
+                    manifestUri: 'https://linearjitp-playback.astro.com.my/dash-wv/linear/2504/default.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '03c2e0af2f8159f9f0ce9b5dbc865f10': 'cd84ed136b0cc71f8ab8cd4d4f6a2e4c'
+                        }
+                    }
+                },
+				{
+                    id: 'sony1hd',
+                    manifestUri: 'https://bpprod5catchup.akamaized.net/bpk-tv/irdeto_com_Channel_256/output/manifest.mpd?begin=20240721T075941&end=20240729T075941',
+                    drmConfig: {
+                        clearKeys: {
+                            'bfb7c046920a530f9578b8b028b6fc0c': 'd503e37a6812e7bf1f6b935e47dd9718'
+                        }
+                    }
+                },
+				  {
+                    id: 'sony3hd',
+                    manifestUri: 'https://bpprod5catchup.akamaized.net/bpk-tv/irdeto_com_Channel_727/output/manifest.mpd?begin=20240721T075735&end=20240729T075735',
+                    drmConfig: {
+                        clearKeys: {
+                            '9cd57453d61c5a7b8d0c011b45dc78f2': '6c78161971a7eceaa08c2cf57494490e'
+                        }
+                    }
+                },
+				 {
+                    id: 'tnt2',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '6d1708b185c6c4d7b37600520c7cc93c': '1aace05f58d8edef9697fd52cb09f441'
+                        }
+                    }
+                },
+				 {
+                    id: 'tnt4',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'e31a5a81caff5d07ea2411a571fc2e59': '96c5ef69479732ae734f962748c19729'
+                        }
+                    }
+                },
+				{
+                    id: 'tnt1',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            'ae26845bd33038a9c0774a0981007294': '63ac662dde310cfb4cc6f9b43b34196d'
+                        }
+                    }
+                },
+                  {
+                    id: 'ptv',
+                    manifestUri: 'https://live4.shoq.com.pk/live/eds/PTV_Sports/DASH/PTV_Sports.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '9ecad6c4413f8bdc54712ce6c072a2cf': '442df559c369bdada8ba3abe97811575'
+                        }
+                    }
+                },
+				{
+                    id: 'tnt3',
+                    manifestUri: 'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd?',
+                    drmConfig: {
+                        clearKeys: {
+                            'ae26845bd33038a9c0774a0981007294': '63ac662dde310cfb4cc6f9b43b34196d'
+                        }
+                    }
+                },
+				{
+                    id: 'criclife',
+                    manifestUri: 'https://uselector.cdn.intigral-ott.net/CRL2/CRL2.isml/manifest.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '77889c7295e1f113852aa6030242b8e4': 'ec8c522d46888a15ff6533aa28ccd7f5'
+                        }
+                    }
+                },
+                  {
+                    id: 'fancode',
+                    manifestUri: 'https://a39aivottlinear-a.akamaihd.net/OTTB/sin-nitro/live/clients/dash/enc/l8j2xgwt32/out/v1/fe72171ab2684ab8b9ee3e2ffcc9cff2/cenc.mpd',
+                    drmConfig: {
+                        clearKeys: {
+                            '159a2b4e1d2d7f16892d35d935a2fb34': '07809840dd0f511221ca78459167d1b3'
+                        }
+                    }
+                },
+                // Add more configurations as needed
+            ];
+
+
+            // Function to initialize the video player
+            async function init() {
+                const id = getQueryParameter('id');
+                const config = videoConfigs.find(cfg => cfg.id === id);
+
+                if (!config) {
+                    console.error('No valid configuration found for the provided id.');
+                    return;
+                }
+
+                const video = document.getElementById('youtube-theme');
+                const ui = video['ui'];
+                ui.configure({
+                    seekBarColors: {
+                        base: 'rgba(255,255,255,.2)',
+                        buffered: 'rgba(255,255,255,.4)',
+                        played: 'rgb(255,0,0)',
+                    }
+                });
+
+                const controls = ui.getControls();
+                const player = controls.getPlayer();
+
+                // Apply DRM configuration to the player
+                player.configure({
+                    drm: config.drmConfig
+                });
+
+                try {
+                    await player.load(config.manifestUri);
+                    // Mute the video to allow autoplay
+                    video.muted = true;
+                    await video.play(); // Attempt to autoplay
+                } catch (error) {
+                    console.error('Error loading manifest or autoplay failed:', error);
+                }
+
+                // Replace jQuery with vanilla JavaScript for modifying button text
+                document.querySelectorAll('.shaka-overflow-menu-button').forEach(button => {
+                    button.textContent = 'settings';
+                });
+
+                document.querySelectorAll('.shaka-back-to-overflow-button .material-icons-round').forEach(icon => {
+                    icon.textContent = 'arrow_back_ios_new';
+                });
+            }
+
+            document.addEventListener('shaka-ui-loaded', init);
+
+            // Display a pop-up message when the page starts
+            window.addEventListener("load", function () {
+                var result = window.confirm("Join @WatchAddaLive for more updates?");
+                if (result) {
+                    window.location.href = "https://t.me/WatchAddaLive";
+                }
+            });
+        })();
+    </script>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "716ff3f2515d415696096e7d05ddd672"}'></script><!-- Cloudflare Pages Analytics --></body>
+</html>
